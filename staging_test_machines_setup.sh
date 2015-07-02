@@ -1,13 +1,10 @@
 #!/bin/bash
 
-# ENV settings
-NEPTUNE_ENDPOINT="neptune-staging-env.herokuapp.com"
-NEPTUNEIO_KEY="a976fc9fb8364cc99616e305486173ae"
 # Work out of ubuntu user home
 cd /home/ubuntu
 
-# Install Prod version of Neptuneio agent pointing to Dev
-bash -c "$(curl -sS -L https://raw.githubusercontent.com/neptuneio/nagent/prod/src/install_nagent.sh)"
+# Install Prod version of Neptuneio agent pointing to staging
+NEPTUNE_ENDPOINT="neptune-staging-env.herokuapp.com" NEPTUNEIO_KEY="a976fc9fb8364cc99616e305486173ae" bash -c "$(curl -sS -L https://raw.githubusercontent.com/neptuneio/nagent/prod/src/install_nagent.sh)"
 
 # Install New relic agent
 # Use unbuntu version of new relic agent
