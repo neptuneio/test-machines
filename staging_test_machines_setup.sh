@@ -11,7 +11,7 @@ NEPTUNE_ENDPOINT="neptune-staging-env.herokuapp.com" NEPTUNEIO_KEY="a976fc9fb836
 echo deb http://apt.newrelic.com/debian/ newrelic non-free >> /etc/apt/sources.list.d/newrelic.list
 wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -
 apt-get update
-apt-get install newrelic-sysmond
+apt-get install -y newrelic-sysmond
 nrsysmond-config --set license_key=dfc748af2b5d0a493659d3a443a7bc2fdbe06fa1
 /etc/init.d/newrelic-sysmond start
 
@@ -27,7 +27,7 @@ DD_API_KEY=480944a4de7c042d7632983a7f5f7fa8 bash -c "$(curl -L https://raw.githu
 # Install scout agent
 apt-get install -y ruby
 cd /home/ubuntu
-curl -Sso scout_install.sh https://scoutapp.com/scout_install.sh && sudo /bin/bash ./scout_install.sh -k 5S3e2mIKqSi1NfSGJqQcjjt7bxoUfncYa3O9lF5L
+curl -Sso scout_install.sh https://scoutapp.com/scout_install.sh && sudo /bin/bash ./scout_install.sh -y -k 5S3e2mIKqSi1NfSGJqQcjjt7bxoUfncYa3O9lF5L
 
 # Install Sensu agent
 
