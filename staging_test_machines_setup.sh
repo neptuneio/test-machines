@@ -35,6 +35,7 @@ curl -Sso scout_install.sh https://scoutapp.com/scout_install.sh && sudo /bin/ba
 # Install zabbix agent
 apt-get install zabbix-agent
 sed -i 's|Server=\S\+|Server=52.27.36.254|g' /etc/zabbix/zabbix_agentd.conf
+sed -i 's|ServerActive=\S\+|ServerActive=52.27.36.254|g' /etc/zabbix/zabbix_agentd.conf
 sed -i 's|Hostname=\S\+||g' /etc/zabbix/zabbix_agentd.conf
 sed -i 's|# HostnameItem=system.hostname|HostnameItem=system.hostname|g' /etc/zabbix/zabbix_agentd.conf
 service zabbix-agent restart
