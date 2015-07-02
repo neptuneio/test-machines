@@ -33,7 +33,10 @@ curl -Sso scout_install.sh https://scoutapp.com/scout_install.sh && sudo /bin/ba
 
 
 # Install zabbix agent
-
+apt-get install zabbix-agent
+sed -i '' 's|Server=127.0.0.1|Server=52.27.165.226|g' /etc/zabbix/zabbix_agentd.conf
+sed -i '' 's|Hostname=Zabbix server||g' /etc/zabbix/zabbix_agentd.conf
+sed -i '' 's|# HostnameItem=system.hostname|HostnameItem=system.hostname|g' /etc/zabbix/zabbix_agentd.conf
 
 # Install Nagios agent
 
