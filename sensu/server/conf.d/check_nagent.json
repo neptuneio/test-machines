@@ -1,0 +1,12 @@
+{
+  "checks": {
+    "nagent": {
+      "command": "/etc/sensu/plugins/check-nagent.rb",
+      "interval": 60,
+      "subscribers": [
+        "staging"
+      ],
+      "handler" : "pagerduty"
+    }
+  }
+}

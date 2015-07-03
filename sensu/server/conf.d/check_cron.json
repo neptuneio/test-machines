@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "cron": {
+      "command": "/etc/sensu/plugins/check-procs.rb -p cron",
+      "interval": 30,
+      "refresh": 30,
+      "occurrences" : 2,
+      "subscribers": [
+        "staging"
+      ],
+      "handlers": ["pagerduty"]
+    }
+  }
+}

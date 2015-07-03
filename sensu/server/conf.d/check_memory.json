@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "memory": {
+      "command": "/etc/sensu/plugins/check-mem.sh -w 180 -c 90",
+      "interval": 30,
+      "refresh": 30,
+      "occurrences" : 2,
+      "subscribers": [
+        "staging"
+      ],
+     "handlers": ["pagerduty"]
+    }
+  }
+}

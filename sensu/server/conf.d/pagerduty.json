@@ -1,0 +1,11 @@
+{
+  "handlers": {
+    "pagerduty": {
+      "command": "/etc/sensu/handlers/notifications/pagerduty.rb",
+      "type": "pipe"
+    }
+  },
+  "pagerduty": {
+     "api_key": "0106c5bca399408288b001ce57466e0b"
+  }
+}
