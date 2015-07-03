@@ -20,14 +20,14 @@ do
     1) echo "Running CPU load test"
       stress -q -c 2 -t ${timeout}m &
       ;;
-    2) echo "Running Memory load test"
-      stress -q -m 3 --vm-hang 0 -t ${timeout}m &
+    2) echo "Running Disk util load test"
+      fallocate -l 4G temp.file
       ;;
     3) echo "Running DiskIO load test"
       stress -q -d 2 -t ${timeout}m &
       ;;
-    *) echo "Running Disk util load test"
-      fallocate -l 4G temp.file
+    *) echo "Running Memory load test"
+      stress -q -m 4 --vm-hang 0 -t ${timeout}m &
       ;;
   esac
 
