@@ -33,7 +33,11 @@ cd /home/ubuntu
 curl -Sso scout_install.sh https://scoutapp.com/scout_install.sh && sudo /bin/bash ./scout_install.sh -y -k 5S3e2mIKqSi1NfSGJqQcjjt7bxoUfncYa3O9lF5L
 
 # Install Sensu agent
-apt-get install sensu
+wget -q http://repos.sensuapp.org/apt/pubkey.gpg -O- | apt-key add -
+echo "deb http://repos.sensuapp.org/apt sensu main" | tee -a /etc/apt/sources.list.d/sensu.list
+apt-get update && apt-get install -y sensu
+
+# Get config/client jsons
 wget -O /etc/sensu/config.json https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/config.json
 wget -O /etc/sensu/client.json https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/client.json
 sed -i "s|system_hostname|$SYSTEM_HOSTNAME|g" /etc/sensu/client.json
