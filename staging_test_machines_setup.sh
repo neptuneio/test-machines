@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# ENV variables
+SYSTEM_HOSTNAME=`hostname`
+
 # Work out of ubuntu user home
 cd /home/ubuntu
 
@@ -22,7 +25,7 @@ git clone https://github.com/stalluri/newrelicTestApp.git
 nohup node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
 
 # Install datadog agent
-DD_API_KEY=480944a4de7c042d7632983a7f5f7fa8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+DD_API_KEY=480944a4de7c042d7632983a7f5f7fa8 bash -c "$(curl -L https://raw.githuwget -O /etc/sensu/config.json http://sensuapp.org/docs/0.18/files/config.jsonbusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
 
 # Install scout agent
 apt-get install -y ruby
@@ -30,7 +33,20 @@ cd /home/ubuntu
 curl -Sso scout_install.sh https://scoutapp.com/scout_install.sh && sudo /bin/bash ./scout_install.sh -y -k 5S3e2mIKqSi1NfSGJqQcjjt7bxoUfncYa3O9lF5L
 
 # Install Sensu agent
+apt-get install sensu
+wget -O /etc/sensu/config.json https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/config.json
+wget -O /etc/sensu/client.json https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/client.json
+sed -i "s|system_hostname|$SYSTEM_HOSTNAME|g" /etc/sensu/client.json
 
+# Download required sensu checks to plugins directory
+sudo wget -O /etc/sensu/plugins/check-mem.sh http://sensuapp.org/docs/0.18/files/check-mem.sh
+sudo chmod +x /etc/sensu/plugins/check-mem.sh
+
+# Ensure sensu checks and plugins are owned by sensu user and group
+sudo chown -R sensu:sensu /etc/sensu
+
+# Start sensu client
+/etc/init.d/sensu-client start
 
 # Install zabbix agent
 apt-get install zabbix-agent
@@ -52,6 +68,6 @@ apt-get -y install stress
 # Initialize stress load with 6 min duty cycle
 cd /home/ubuntu
 killall stress_load.sh
-curl -sS -o stress_load.sh https://raw.githubusercontent.com/neptuneio/test-machines/master/stress_load.sh
+curl -sS -o stress_load.sh https://raw.githubusercontent.com/neptuneio/test-machines/master/stress/stress_load.sh
 chmod +x ./stress_load.sh
 nohup ./stress_load.sh > /dev/null 2>&1 &

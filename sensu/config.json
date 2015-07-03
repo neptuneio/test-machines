@@ -1,0 +1,9 @@
+{
+  "rabbitmq": {
+    "host": "ec2-52-5-219-193.compute-1.amazonaws.com",
+    "port": 5672,
+    "vhost": "/sensu",
+    "user": "sensu",
+    "password": "secret"
+  }
+}

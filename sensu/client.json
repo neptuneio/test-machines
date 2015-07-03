@@ -1,0 +1,9 @@
+{
+  "client": {
+    "name": "",
+    "address": "system_hostname",
+    "subscriptions": [
+      "staging"
+    ]
+  }
+}
