@@ -39,8 +39,17 @@ wget -O /etc/sensu/client.json https://raw.githubusercontent.com/neptuneio/test-
 sed -i "s|system_hostname|$SYSTEM_HOSTNAME|g" /etc/sensu/client.json
 
 # Download required sensu checks to plugins directory
+wget -O /etc/sensu/plugins/check-nagent.rb https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/plugins/check-nagent.rb
+sudo chmod +x /etc/sensu/plugins/check-nagent.rb
+
 sudo wget -O /etc/sensu/plugins/check-mem.sh http://sensuapp.org/docs/0.18/files/check-mem.sh
 sudo chmod +x /etc/sensu/plugins/check-mem.sh
+
+sudo wget -O /etc/sensu/plugins/check-procs.rb https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/processes/check-procs.rb
+sudo chmod +x /etc/sensu/plugins/check-procs.rb
+
+sudo wget -O /etc/sensu/plugins/cpu-metrics.rb https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/cpu-metrics.rb
+sudo chmod +x /etc/sensu/plugins/cpu-metrics.rb
 
 # Ensure sensu checks and plugins are owned by sensu user and group
 sudo chown -R sensu:sensu /etc/sensu
