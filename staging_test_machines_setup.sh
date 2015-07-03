@@ -38,6 +38,9 @@ wget -O /etc/sensu/config.json https://raw.githubusercontent.com/neptuneio/test-
 wget -O /etc/sensu/client.json https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/client.json
 sed -i "s|system_hostname|$SYSTEM_HOSTNAME|g" /etc/sensu/client.json
 
+# Set embedded ruby =true in sensu default configuration
+sed -i "s|EMBEDDED_RUBY=\S\+|EMBEDDED_RUBY=true|g" /etc/default/sensu
+
 # Download required sensu checks to plugins directory
 wget -O /etc/sensu/plugins/check-nagent.rb https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/plugins/check-nagent.rb
 sudo chmod +x /etc/sensu/plugins/check-nagent.rb
@@ -52,7 +55,7 @@ sudo wget -O /etc/sensu/plugins/cpu-metrics.rb https://raw.githubusercontent.com
 sudo chmod +x /etc/sensu/plugins/cpu-metrics.rb
 
 # Ensure sensu checks and plugins are owned by sensu user and group
-sudo chown -R sensu:sensu /etc/sensu
+chown -R sensu:sensu /etc/sensu
 
 # Start sensu client
 /etc/init.d/sensu-client start
