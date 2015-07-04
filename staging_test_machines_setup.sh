@@ -40,8 +40,8 @@ apt-get update && apt-get install -y sensu
 # Get config/client jsons
 curl -Sso /etc/sensu/config.json https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/config.json
 curl -Sso /etc/sensu/conf.d/client.json https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/client.json
-sed -i "s|client_name|$SYSTEM_HOSTNAME|g" /etc/sensu/client.json
-sed -i "s|client_address|$SYSTEM_HOSTNAME|g" /etc/sensu/client.json
+sed -i "s|client_name|$SYSTEM_HOSTNAME|g" /etc/sensu/conf.d/client.json
+sed -i "s|client_address|$SYSTEM_HOSTNAME|g" /etc/sensu/conf.d/client.json
 
 # Set embedded ruby =true in sensu default configuration
 sed -i "s|EMBEDDED_RUBY=\S\+|EMBEDDED_RUBY=true|g" /etc/default/sensu
