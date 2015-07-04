@@ -25,7 +25,7 @@ git clone https://github.com/stalluri/newrelicTestApp.git
 nohup node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
 
 # Install datadog agent
-DD_API_KEY=480944a4de7c042d7632983a7f5f7fa8 bash -c "$(curl -L https://raw.githuwget -O /etc/sensu/config.json http://sensuapp.org/docs/0.18/files/config.jsonbusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
+DD_API_KEY=480944a4de7c042d7632983a7f5f7fa8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
 
 # Install scout agent
 apt-get install -y ruby
@@ -38,8 +38,8 @@ echo "deb http://repos.sensuapp.org/apt sensu main" | tee -a /etc/apt/sources.li
 apt-get update && apt-get install -y sensu
 
 # Get config/client jsons
-wget -O /etc/sensu/config.json https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/config.json
-wget -O /etc/sensu/conf.d/client.json https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/client.json
+curl -Sso /etc/sensu/config.json https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/config.json
+curl -Sso /etc/sensu/conf.d/client.json https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/client.json
 sed -i "s|client_name|$SYSTEM_HOSTNAME|g" /etc/sensu/client.json
 sed -i "s|client_address|$SYSTEM_HOSTNAME|g" /etc/sensu/client.json
 
@@ -47,17 +47,17 @@ sed -i "s|client_address|$SYSTEM_HOSTNAME|g" /etc/sensu/client.json
 sed -i "s|EMBEDDED_RUBY=\S\+|EMBEDDED_RUBY=true|g" /etc/default/sensu
 
 # Download required sensu checks to plugins directory
-wget -O /etc/sensu/plugins/check-nagent.rb https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/plugins/check-nagent.rb
-sudo chmod +x /etc/sensu/plugins/check-nagent.rb
+curl -Sso /etc/sensu/plugins/check-nagent.rb https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/plugins/check-nagent.rb
+chmod +x /etc/sensu/plugins/check-nagent.rb
 
-sudo wget -O /etc/sensu/plugins/check-mem.sh http://sensuapp.org/docs/0.18/files/check-mem.sh
-sudo chmod +x /etc/sensu/plugins/check-mem.sh
+curl -Sso /etc/sensu/plugins/check-mem.sh http://sensuapp.org/docs/0.18/files/check-mem.sh
+chmod +x /etc/sensu/plugins/check-mem.sh
 
-sudo wget -O /etc/sensu/plugins/check-procs.rb https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/processes/check-procs.rb
-sudo chmod +x /etc/sensu/plugins/check-procs.rb
+curl -Sso /etc/sensu/plugins/check-procs.rb https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/processes/check-procs.rb
+chmod +x /etc/sensu/plugins/check-procs.rb
 
-sudo wget -O /etc/sensu/plugins/cpu-metrics.rb https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/cpu-metrics.rb
-sudo chmod +x /etc/sensu/plugins/cpu-metrics.rb
+curl -Sso /etc/sensu/plugins/cpu-metrics.rb https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/cpu-metrics.rb
+chmod +x /etc/sensu/plugins/cpu-metrics.rb
 
 # Ensure sensu checks and plugins are owned by sensu user and group
 chown -R sensu:sensu /etc/sensu
