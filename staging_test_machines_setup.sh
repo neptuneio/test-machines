@@ -8,6 +8,7 @@ cd /home/ubuntu
 
 # Install test worker job process
 curl -sS -o neptune_test_worker_job.sh https://raw.githubusercontent.com/neptuneio/test-machines/master/worker_job/neptune_test_worker_job.sh
+chmod +x neptune_test_worker_job.sh
 chown -R neptuneioagent neptune_test_worker_job.sh
 /home/ubuntu/neptune_test_worker_job.sh&
 
