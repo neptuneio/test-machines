@@ -1,0 +1,5 @@
+init_config:
+
+instances:
+- name: neptune_test_worker
+  search_string: ['neptune_test_worker_job.sh']
