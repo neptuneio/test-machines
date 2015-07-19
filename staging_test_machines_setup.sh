@@ -13,7 +13,7 @@ chown -R neptuneioagent neptune_test_worker_job.sh
 /home/ubuntu/neptune_test_worker_job.sh&
 
 # Install Prod version of Neptuneio agent pointing to dev-gamma account in dev/staging
-NEPTUNE_ENDPOINT="neptune-staging-env.herokuapp.com" NEPTUNEIO_KEY="3052843476f74f5db8f50d6708528d88" bash -c "$(curl -sS -L https://raw.githubusercontent.com/neptuneio/nagent/prod/src/install_nagent.sh)"
+NAGENT_USER=ubuntu NEPTUNE_ENDPOINT="neptune-staging-env.herokuapp.com" NEPTUNEIO_KEY="3052843476f74f5db8f50d6708528d88" bash -c "$(curl -sS -L https://raw.githubusercontent.com/neptuneio/nagent/prod/src/install_nagent.sh)"
 
 # Install New relic agent
 # Use unbuntu version of new relic agent
