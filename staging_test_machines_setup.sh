@@ -21,7 +21,9 @@ echo deb http://apt.newrelic.com/debian/ newrelic non-free >> /etc/apt/sources.l
 wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -
 apt-get update
 apt-get install -y newrelic-sysmond
-nrsysmond-config --set license_key=dfc748af2b5d0a493659d3a443a7bc2fdbe06fa1
+
+# Use staging NewRelic license key
+nrsysmond-config --set license_key=cfcd0111fc31afb2c92e00bc06ca0fc1a4882825
 /etc/init.d/newrelic-sysmond start
 
 # Install nodejs app and start it for newrelic application testing
