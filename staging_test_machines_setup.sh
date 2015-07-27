@@ -24,7 +24,7 @@ apt-get install -y newrelic-sysmond
 
 # Use staging NewRelic license key
 nrsysmond-config --set license_key=cfcd0111fc31afb2c92e00bc06ca0fc1a4882825
-/etc/init.d/newrelic-sysmond start
+/etc/init.d/newrelic-sysmond restart
 
 # Install nodejs app and start it for newrelic application testing
 #cd /home/ubuntu
