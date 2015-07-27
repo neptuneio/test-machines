@@ -27,10 +27,10 @@ nrsysmond-config --set license_key=cfcd0111fc31afb2c92e00bc06ca0fc1a4882825
 /etc/init.d/newrelic-sysmond start
 
 # Install nodejs app and start it for newrelic application testing
-cd /home/ubuntu
-rm -rf newrelicTestApp /tmp/temp.file
-git clone https://github.com/stalluri/newrelicTestApp.git
-nohup /usr/local/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
+#cd /home/ubuntu
+#rm -rf newrelicTestApp /tmp/temp.file
+#git clone https://github.com/stalluri/newrelicTestApp.git
+#nohup /usr/local/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
 
 # Install datadog agent
 DD_API_KEY=480944a4de7c042d7632983a7f5f7fa8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
