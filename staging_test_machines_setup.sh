@@ -61,7 +61,7 @@ sed -i "s|EMBEDDED_RUBY=\S\+|EMBEDDED_RUBY=true|g" /etc/default/sensu
 curl -Sso /etc/sensu/plugins/check-nagent.rb https://raw.githubusercontent.com/neptuneio/test-machines/master/sensu/plugins/check-nagent.rb
 chmod +x /etc/sensu/plugins/check-nagent.rb
 
-curl -Sso /etc/sensu/plugins/check-mem.sh http://sensuapp.org/docs/0.18/files/check-mem.sh
+curl -Sso /etc/sensu/plugins/check-mem.sh https://sensuapp.org/docs/0.18/files/check-mem.sh
 chmod +x /etc/sensu/plugins/check-mem.sh
 
 curl -Sso /etc/sensu/plugins/check-procs.rb https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/processes/check-procs.rb
