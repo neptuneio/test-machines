@@ -84,8 +84,14 @@ sed -i 's|Hostname=\S\+||g' /etc/zabbix/zabbix_agentd.conf
 sed -i 's|# HostnameItem=system.hostname|HostnameItem=system.hostname|g' /etc/zabbix/zabbix_agentd.conf
 service zabbix-agent restart
 
-# Install Nagios agent
+# Nagios setup 
+# Install mysql so that Nagios monitors it.
+apt-get install mysql-server
+sed -i 's|bind-address|#bind-address|g' /etc/mysql/my.cnf
+service mysql restart
 
+# Start a simple HTTP server.
+nohup python -m SimpleHTTPServer 80 &
 
 # Install logic monitor agent
 
