@@ -30,6 +30,7 @@ nrsysmond-config --set license_key=cfcd0111fc31afb2c92e00bc06ca0fc1a4882825
 cd /home/ubuntu
 rm -rf newrelicTestApp /tmp/temp.file
 git clone https://github.com/stalluri/newrelicTestApp.git
+chown -R ubuntu newrelicTest
 nohup /usr/local/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
 
 # Install datadog agent
@@ -85,13 +86,16 @@ sed -i 's|# HostnameItem=system.hostname|HostnameItem=system.hostname|g' /etc/za
 service zabbix-agent restart
 
 # Nagios setup 
+# Install apache
+apt-get install apache2
+service apache2 restart
+
 # Install mysql so that Nagios monitors it.
+debconf-set-selections <<< 'mysql-server mysql-server/root_password password neptunerocks'
+debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password neptunerocks'
 apt-get install mysql-server
 sed -i 's|bind-address|#bind-address|g' /etc/mysql/my.cnf
 service mysql restart
-
-# Start a simple HTTP server.
-nohup python -m SimpleHTTPServer 80 &
 
 # Install logic monitor agent
 
