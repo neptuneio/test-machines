@@ -30,7 +30,7 @@ nrsysmond-config --set license_key=cfcd0111fc31afb2c92e00bc06ca0fc1a4882825
 cd /home/ubuntu
 rm -rf newrelicTestApp /tmp/temp.file
 git clone https://github.com/stalluri/newrelicTestApp.git
-chown -R ubuntu newrelicTest
+chown -R ubuntu newrelicTestApp
 nohup /usr/local/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
 
 # Install datadog agent
