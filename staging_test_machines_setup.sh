@@ -79,8 +79,8 @@ chown -R sensu:sensu /etc/sensu
 
 # Install zabbix agent
 apt-get install zabbix-agent
-sed -i 's|Server=\S\+|Server=172.31.31.23|g' /etc/zabbix/zabbix_agentd.conf
-sed -i 's|ServerActive=\S\+|ServerActive=172.31.31.23|g' /etc/zabbix/zabbix_agentd.conf
+sed -i 's|Server=\S\+|Server=54.149.32.142|g' /etc/zabbix/zabbix_agentd.conf
+sed -i 's|ServerActive=\S\+|ServerActive=54.149.32.142|g' /etc/zabbix/zabbix_agentd.conf
 sed -i 's|Hostname=\S\+||g' /etc/zabbix/zabbix_agentd.conf
 sed -i 's|# HostnameItem=system.hostname|HostnameItem=system.hostname|g' /etc/zabbix/zabbix_agentd.conf
 service zabbix-agent restart
