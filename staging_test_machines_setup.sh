@@ -15,23 +15,6 @@ chown -R neptuneioagent neptune_test_worker_job.sh
 # Install staging version of Neptuneio agent pointing to dev-gamma account in dev/staging
 NAGENT_USER=ubuntu NEPTUNE_ENDPOINT="neptune-staging-env.herokuapp.com" NEPTUNEIO_KEY="3052843476f74f5db8f50d6708528d88" bash -c "$(curl -sS -L https://raw.githubusercontent.com/neptuneio/nagent/staging/src/install_nagent.sh)"
 
-# Install New relic agent
-# Use unbuntu version of new relic agent
-echo deb http://apt.newrelic.com/debian/ newrelic non-free >> /etc/apt/sources.list.d/newrelic.list
-wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -
-apt-get update
-apt-get install -y newrelic-sysmond
-
-# Use staging NewRelic license key
-nrsysmond-config --set license_key=cfcd0111fc31afb2c92e00bc06ca0fc1a4882825
-/etc/init.d/newrelic-sysmond restart
-
-# Install nodejs app and start it for newrelic application testing
-cd /home/ubuntu
-rm -rf newrelicTestApp /tmp/temp.file
-git clone https://github.com/stalluri/newrelicTestApp.git
-chown -R ubuntu newrelicTestApp
-nohup /usr/local/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
 
 # Install datadog agent
 DD_API_KEY=480944a4de7c042d7632983a7f5f7fa8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
@@ -99,13 +82,30 @@ service mysql restart
 
 # Install logic monitor agent
 
-
-# Install stress package
-apt-get -y install stress
-
 # Initialize stress load with 6 min duty cycle
 cd /home/ubuntu
 killall stress_load.sh
 curl -sS -o stress_load.sh https://raw.githubusercontent.com/neptuneio/test-machines/master/stress/stress_load.sh
 chmod +x ./stress_load.sh
 nohup ./stress_load.sh > /dev/null 2>&1 &
+
+# Install New relic agent
+# Use unbuntu version of new relic agent
+echo deb http://apt.newrelic.com/debian/ newrelic non-free >> /etc/apt/sources.list.d/newrelic.list
+wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -
+apt-get update
+apt-get install -y newrelic-sysmond
+
+# Use staging NewRelic license key
+nrsysmond-config --set license_key=cfcd0111fc31afb2c92e00bc06ca0fc1a4882825
+/etc/init.d/newrelic-sysmond restart
+
+# Install nodejs app and start it for newrelic application testing
+cd /home/ubuntu
+rm -rf newrelicTestApp /tmp/temp.file
+git clone https://github.com/stalluri/newrelicTestApp.git
+chown -R ubuntu newrelicTestApp
+nohup /usr/local/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
+
+# Install stress package
+apt-get -y install stress
