@@ -10,7 +10,7 @@ cd /home/ubuntu
 curl -sS -o neptune_test_worker_job.sh https://raw.githubusercontent.com/neptuneio/test-machines/master/worker_job/neptune_test_worker_job.sh
 chmod +x neptune_test_worker_job.sh
 chown -R neptuneioagent neptune_test_worker_job.sh
-/home/ubuntu/neptune_test_worker_job.sh&
+nohup /home/ubuntu/neptune_test_worker_job.sh&
 
 # Install staging version of Neptuneio agent pointing to dev-gamma account in dev/staging
 NAGENT_USER=ubuntu NEPTUNE_ENDPOINT="neptune-staging-env.herokuapp.com" NEPTUNEIO_KEY="3052843476f74f5db8f50d6708528d88" bash -c "$(curl -sS -L https://raw.githubusercontent.com/neptuneio/nagent/staging/src/install_nagent.sh)"
