@@ -9,7 +9,7 @@ cd /home/ubuntu
 # Install test worker job process
 curl -sS -o neptune_test_worker_job.sh https://raw.githubusercontent.com/neptuneio/test-machines/master/worker_job/neptune_test_worker_job.sh
 chmod +x neptune_test_worker_job.sh
-chown -R neptuneioagent neptune_test_worker_job.sh
+chown -R ubuntu:ubuntu neptune_test_worker_job.sh
 nohup /home/ubuntu/neptune_test_worker_job.sh&
 
 # Install staging version of Neptuneio agent pointing to dev-gamma account in dev/staging
@@ -104,6 +104,6 @@ nrsysmond-config --set license_key=cfcd0111fc31afb2c92e00bc06ca0fc1a4882825
 cd /home/ubuntu
 rm -rf newrelicTestApp /tmp/temp.file
 git clone https://github.com/stalluri/newrelicTestApp.git
-chown -R ubuntu newrelicTestApp
+chown -R ubuntu:ubuntu newrelicTestApp
 nohup /usr/local/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
 
