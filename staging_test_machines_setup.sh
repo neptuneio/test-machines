@@ -15,6 +15,9 @@ nohup /home/ubuntu/neptune_test_worker_job.sh&
 # Install staging version of Neptuneio agent pointing to dev-gamma account in dev/staging
 NAGENT_USER=ubuntu NEPTUNE_ENDPOINT="neptune-staging-env.herokuapp.com" NEPTUNEIO_KEY="3052843476f74f5db8f50d6708528d88" bash -c "$(curl -sS -L https://raw.githubusercontent.com/neptuneio/nagent/staging/src/install_nagent.sh)"
 
+# Install required python modules for some of our rules.
+pip install texttable
+
 # Install datadog agent
 DD_API_KEY=480944a4de7c042d7632983a7f5f7fa8 bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)"
 # Process yaml
