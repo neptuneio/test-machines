@@ -107,6 +107,7 @@ nrsysmond-config --set license_key=dfc748af2b5d0a493659d3a443a7bc2fdbe06fa1
 cd /home/ubuntu
 rm -rf newrelicTestApp /tmp/temp.file
 git clone https://github.com/stalluri/newrelicTestApp.git
+touch ./newrelicTestApp/server.log
 chown -R ubuntu:ubuntu newrelicTestApp
 nohup /usr/local/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
 
