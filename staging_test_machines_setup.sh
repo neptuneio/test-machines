@@ -81,6 +81,7 @@ debconf-set-selections <<< 'mysql-server mysql-server/root_password_again passwo
 apt-get install -y mysql-server
 sed -i 's|bind-address|#bind-address|g' /etc/mysql/my.cnf
 service mysql restart
+mysql -u root -pneptunerocks -e "create user nagios identified by 'neptunerocks';"
 
 # Install stress package
 apt-get install -y stress

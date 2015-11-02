@@ -81,6 +81,7 @@ debconf-set-selections <<< 'mysql-server mysql-server/root_password_again passwo
 apt-get install -y mysql-server
 sed -i 's|bind-address|#bind-address|g' /etc/mysql/my.cnf
 service mysql restart
+mysql -u root -pneptunerocks -e "create user nagios identified by 'neptunerocks';"
 
 # Install stress package
 apt-get install -y stress
@@ -107,7 +108,14 @@ nrsysmond-config --set license_key=dfc748af2b5d0a493659d3a443a7bc2fdbe06fa1
 cd /home/ubuntu
 rm -rf newrelicTestApp /tmp/temp.file
 git clone https://github.com/stalluri/newrelicTestApp.git
-touch ./newrelicTestApp/server.log
+touch ./newrelicTestApp/server.log ./newrelicTestApp/client.log
+sed -i "s|cfcd0111fc31afb2c92e00bc06ca0fc1a4882825|dfc748af2b5d0a493659d3a443a7bc2fdbe06fa1|g" ./newrelicTestApp/newrelic.js
 chown -R ubuntu:ubuntu newrelicTestApp
 nohup /usr/local/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
 
+# Start generating load for the NewRelic test app.
+cd /home/ubuntu
+killall load_newrelic_app.py 
+curl -sS -o load_newrelic_app.py https://raw.githubusercontent.com/neptuneio/test-machines/master/newrelic/load_newrelic_app.py
+chmod +x ./load_newrelic_app.py
+nohup ./load_newrelic_app.py > ./newrelicTestApp/client.log 2>&1 &
