@@ -6,7 +6,7 @@ import requests
 
 msg = {}
 msg['alert_policy_name'] = "Default application alert policy"
-msg['created_at'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+msg['created_at'] = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 msg["application_name"] = "newrelicTestApp"
 msg["account_name"] = "Neptuneio"
 msg["severity"] = "critical"
