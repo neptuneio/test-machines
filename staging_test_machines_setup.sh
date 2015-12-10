@@ -13,7 +13,7 @@ chown -R ubuntu:ubuntu neptune_test_worker_job.sh
 nohup /home/ubuntu/neptune_test_worker_job.sh&
 
 # Install staging version of Neptuneio agent pointing to dev-gamma account in dev/staging
-AGENT_USER="ubuntu" END_POINT="neptune-staging-env.herokuapp.com" API_KEY="3052843476f74f5db8f50d6708528d88" bash -c "$(curl -sS -L https://raw.githubusercontent.com/neptuneio/neptune-agent/master/scripts/linux/install_neptune_agent_linux.sh)"
+AGENT_USER="neptune" END_POINT="neptune-staging-env.herokuapp.com" API_KEY="3052843476f74f5db8f50d6708528d88" bash -c "$(curl -sS -L https://raw.githubusercontent.com/neptuneio/neptune-agent/master/scripts/linux/install_neptune_agent_linux.sh)"
 
 # Install required python modules for some of our rules.
 sudo pip install texttable
