@@ -110,5 +110,5 @@ rm -rf newrelicTestApp /tmp/temp.file
 git clone https://github.com/stalluri/newrelicTestApp.git
 touch ./newrelicTestApp/server.log
 chown -R ubuntu:ubuntu newrelicTestApp
-nohup /usr/local/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
+nohup /usr/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
 
