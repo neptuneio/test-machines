@@ -111,7 +111,7 @@ git clone https://github.com/stalluri/newrelicTestApp.git
 touch ./newrelicTestApp/server.log ./newrelicTestApp/client.log
 sed -i "s|cfcd0111fc31afb2c92e00bc06ca0fc1a4882825|dfc748af2b5d0a493659d3a443a7bc2fdbe06fa1|g" ./newrelicTestApp/newrelic.js
 chown -R ubuntu:ubuntu newrelicTestApp
-nohup /usr/local/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
+nohup /usr/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
 
 # Start generating load for the NewRelic test app.
 cd /home/ubuntu
