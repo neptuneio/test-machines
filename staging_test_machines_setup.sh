@@ -112,3 +112,8 @@ touch ./newrelicTestApp/server.log
 chown -R ubuntu:ubuntu newrelicTestApp
 nohup /usr/bin/node ./newrelicTestApp/server.js > ./newrelicTestApp/server.log 2>&1 &
 
+# Add the sudoers local file for neptune so that we can run sudo commands.
+echo "neptune ALL=(ALL) NOPASSWD: ALL
+Defaults:neptune !requiretty" > /tmp/neptune.sudoers
+sudo mv /tmp/neptune.sudoers /etc/sudoers.d/neptune
+

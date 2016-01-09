@@ -119,3 +119,9 @@ killall load_newrelic_app.py
 curl -sS -o load_newrelic_app.py https://raw.githubusercontent.com/neptuneio/test-machines/master/newrelic/load_newrelic_app.py
 chmod +x ./load_newrelic_app.py
 nohup ./load_newrelic_app.py > ./newrelicTestApp/client.log 2>&1 &
+
+# Add the sudoers local file for neptune so that we can run sudo commands.
+echo "neptune ALL=(ALL) NOPASSWD: ALL
+Defaults:neptune !requiretty" > /tmp/neptune.sudoers
+sudo mv /tmp/neptune.sudoers /etc/sudoers.d/neptune
+
