@@ -28,6 +28,8 @@ service datadog-agent restart
 apt-get install -y ruby
 cd /home/ubuntu
 curl -Sso scout_install.sh https://scoutapp.com/scout_install.sh && sudo /bin/bash ./scout_install.sh -y -k 5S3e2mIKqSi1NfSGJqQcjjt7bxoUfncYa3O9lF5L
+scoutd --key=5S3e2mIKqSi1NfSGJqQcjjt7bxoUfncYa3O9lF5L --environment=staging --roles=StagingApps config > /etc/scout/scoutd.yml
+scoutctl restart
 
 # Install Sensu agent
 wget -q http://repositories.sensuapp.org/apt/pubkey.gpg -O- | sudo apt-key add -
