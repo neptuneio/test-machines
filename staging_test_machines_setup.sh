@@ -28,7 +28,7 @@ service datadog-agent restart
 apt-get install -y ruby
 cd /home/ubuntu
 curl -Sso scout_install.sh https://scoutapp.com/scout_install.sh && sudo /bin/bash ./scout_install.sh -y -k 5S3e2mIKqSi1NfSGJqQcjjt7bxoUfncYa3O9lF5L
-scoutd --key=5S3e2mIKqSi1NfSGJqQcjjt7bxoUfncYa3O9lF5L --environment=staging --roles=StagingApps config -o
+scoutd --key=5S3e2mIKqSi1NfSGJqQcjjt7bxoUfncYa3O9lF5L --environment=staging --roles=StagingApps config > /etc/scout/scoutd.yml
 scoutctl restart
 
 # Install Sensu agent
@@ -72,7 +72,7 @@ sed -i 's|Hostname=\S\+||g' /etc/zabbix/zabbix_agentd.conf
 sed -i 's|# HostnameItem=system.hostname|HostnameItem=system.hostname|g' /etc/zabbix/zabbix_agentd.conf
 service zabbix-agent restart
 
-# Nagios setup 
+# Nagios setup
 # Install nginx
 apt-get install -y nginx
 service nginx restart
