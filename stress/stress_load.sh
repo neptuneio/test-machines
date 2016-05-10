@@ -32,7 +32,7 @@ do
   esac
 
   # Sleep for timeout
-  sleep 600
+  sleep 1200
 
   # Remove temp.file if it exists
   if [ -f temp.file ]; then
